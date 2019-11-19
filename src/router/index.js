@@ -35,6 +35,11 @@ const router = new VueRouter({
   routes
 })
 
+// 解决 vue-router 多次点击错误问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 // 定义导航前置守卫, 拦截登录, 进行校验, 如果没有token 则强制跳转到 login
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
