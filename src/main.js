@@ -9,7 +9,26 @@ import axios from 'axios'
 
 // axiso 的全局配置
 axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'
-axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
+// axios 强行放到Vue构造函数的原型上
+Vue.prototype.$axios = axios
+
+// 配置axios的拦截器
+axios.interceptors.request.use(function (config) {
+  // 在全局配置, 发送请求请拦截, 添加Authrization
+  config.headers.Authorization = localStorage.getItem('token')
+  return config
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error)
+})
+
+// Add a response interceptor
+axios.interceptors.response.use(function (res) {
+  // 能够拦截到 响应数据 res, 直接把 res.data给浏览器
+  return res.data
+}, function (error) {
+  return Promise.reject(error)
+})
 
 // 手动安装 axios
 Vue.use(elementUI)
@@ -19,5 +38,9 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  beforeDestroy () {
+    // localStorage.setItem('token2', 'hhhh')
+    localStorage.removeItem('token')
+  }
 }).$mount('#app')

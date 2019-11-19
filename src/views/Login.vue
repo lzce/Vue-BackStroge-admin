@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -46,22 +45,20 @@ export default {
 
     // 点击登录按钮, 先校验表单, 在发送ajax
     login () {
-      this.$refs.form.validate(valid => {
+      this.$refs.form.validate(async valid => {
         if (!valid) return
         // 校验成功 发送 ajax
-        axios.post('login', this.form).then(res => {
-          // console.log(res.data)
-          const { meta, data } = res.data
-          if (meta.status === 200) {
-            // 登录成功
-            // 存 token
-            localStorage.setItem('token', data.token)
-            this.$router.push('/index')
-            this.$message.success('小可爱, 欢迎进入管理系统😝')
-          } else {
-            this.$message.error('小可爱, 用户名或密码错啦🐷')
-          }
-        })
+        const { meta, data } = await this.$axios.post('login', this.form)
+        // console.log(res.data)
+        if (meta.status === 200) {
+          // 登录成功
+          // 存 token
+          localStorage.setItem('token', data.token)
+          this.$router.push('/index')
+          this.$message.success('小可爱, 欢迎进入管理系统😝')
+        } else {
+          this.$message.error('小可爱, 用户名或密码错啦🐷')
+        }
       })
     }
   }

@@ -3,7 +3,7 @@
     <el-container>
       <el-header>
         <div class="logo"></div>
-        <h1>品优购后台管理系统</h1>
+        <h1>Vue后台管理系统</h1>
         <div class="logout">
           要离开了嘛, 小可爱
           <a href="javascript:;" @click="logout">退出</a>
@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -49,8 +48,8 @@ export default {
   },
   created () {
     // 在组件创建的时候, 发送ajax , 拿数据,渲染到页面上
-    axios.get('menus').then(res => {
-      const { meta, data } = res.data
+    this.$axios.get('menus').then(res => {
+      const { meta, data } = res
       if (meta.status === 200) {
         this.menuList = data
       }
@@ -58,20 +57,16 @@ export default {
   },
   methods: {
     //  退出功能实现
-    logout () {
-      this.$confirm('小可爱, 你确定要离开嘛🐷', '温馨提示', {
-        type: 'warning'
-      })
-        .then(() => {
-          // 点击确定, 则 清除 token
-          localStorage.removeItem('token')
-          this.$router.push('/login')
-          this.$message.success('小可爱, 退出成功了呦💞')
-        })
-        .catch(() => {
-          // 点击取消 则 弹框提示
-          this.$message.info('我就知道, 你还是舍不得我的😝')
-        })
+    async logout () {
+      try {
+        await this.$confirm('小可爱, 你确定要离开嘛🐷', '温馨提示', { type: 'warning' })
+        // 点击确定, 则 清除 token
+        localStorage.removeItem('token')
+        this.$router.push('/login')
+        this.$message.success('小可爱, 退出成功了呦💞')
+      } catch {
+        this.$message.warning('我就知道, 你还是舍不得我的😝')
+      }
     }
   },
   computed: {
@@ -96,11 +91,14 @@ export default {
       line-height: 60px;
       background-color: #b3c1cd;
       display: flex;
+      padding-left: 0;
       .logo, .logout {
         width: 180px;
       }
       .logo {
-        background: url('../assets/logo.png') no-repeat center center/contain;
+        background: url('../assets/logo2.jpg') no-repeat center center/contain;
+        background-size: 100% 100%;
+        width: 200px;
       }
       .logout {
         text-align: right;
