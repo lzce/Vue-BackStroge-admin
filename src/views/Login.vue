@@ -6,7 +6,7 @@
         <el-input v-model="form.username" placeholder="亲,  这里输入用户名哦🤣"></el-input>
       </el-form-item>
       <el-form-item label="密 码" prop="password">
-        <el-input v-model="form.password" type="password" placeholder="亲， 这里输入密码哦🎉"></el-input>
+        <el-input @keyup.enter.native="login" v-model="form.password" type="password" placeholder="亲， 这里输入密码哦🎉"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="login">登录</el-button>
@@ -53,7 +53,7 @@ export default {
         if (meta.status === 200) {
           // 登录成功
           // 存 token
-          localStorage.setItem('token', data.token)
+          sessionStorage.setItem('token', data.token)
           this.$router.push('/index')
           this.$message.success('小可爱, 欢迎进入管理系统😝')
         } else {

@@ -61,7 +61,7 @@ export default {
       try {
         await this.$confirm('小可爱, 你确定要离开嘛🐷', '温馨提示', { type: 'warning' })
         // 点击确定, 则 清除 token
-        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
         this.$router.push('/login')
         this.$message.success('小可爱, 退出成功了呦💞')
       } catch {
