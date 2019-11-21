@@ -15,7 +15,7 @@ Vue.prototype.$axios = axios
 // 配置axios的拦截器
 axios.interceptors.request.use(function (config) {
   // 在全局配置, 发送请求请拦截, 添加Authrization
-  config.headers.Authorization = localStorage.getItem('token')
+  config.headers.Authorization = sessionStorage.getItem('token')
   return config
 }, function (error) {
   // Do something with request error
@@ -38,9 +38,5 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App),
-  beforeDestroy () {
-    // localStorage.setItem('token2', 'hhhh')
-    localStorage.removeItem('token')
-  }
+  render: h => h(App)
 }).$mount('#app')

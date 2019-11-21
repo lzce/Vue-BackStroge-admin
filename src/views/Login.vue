@@ -57,7 +57,7 @@ export default {
           this.$router.push('/index')
           this.$message.success('小可爱, 欢迎进入管理系统😝')
         } else {
-          this.$message.error('小可爱, 用户名或密码错啦🐷')
+          this.$message.error('小可爱, ' + meta.msg + '+啦🐷')
         }
       })
     }

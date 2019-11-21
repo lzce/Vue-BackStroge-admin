@@ -50,6 +50,9 @@ export default {
     // 在组件创建的时候, 发送ajax , 拿数据,渲染到页面上
     this.$axios.get('menus').then(res => {
       const { meta, data } = res
+      if (!data) {
+        this.$message.error(meta.msg)
+      }
       if (meta.status === 200) {
         this.menuList = data
       }
