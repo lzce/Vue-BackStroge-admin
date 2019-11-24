@@ -55,7 +55,11 @@
         <el-button type="success" @click="prev">上一步</el-button>
         <el-button type="primary" @click="next">下一步</el-button>
       </el-tab-pane>
-      <el-tab-pane label="商品内容" name="2">角色管理</el-tab-pane>
+      <el-tab-pane label="商品内容" name="2">
+        <quill-editor
+          v-model="addForm.goods_introduce">
+        </quill-editor>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -73,7 +77,8 @@ export default {
         goods_number: '',
         goods_cat: [],
         isSell: 1,
-        pics: []
+        pics: [],
+        goods_introduce: ''
       },
       options: [],
       props: {
