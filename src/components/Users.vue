@@ -341,11 +341,6 @@ export default {
 
 <style lang="less" scoped>
 .users {
-  .el-breadcrumb {
-    padding: 15px 10px;
-    background-color: #ddd;
-  }
-
   .users-search {
     display: flex;
     align-items: center;

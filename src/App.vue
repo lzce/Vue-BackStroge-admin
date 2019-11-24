@@ -13,4 +13,8 @@
 html, body, #app {
   height: 100%;
 }
+.el-breadcrumb {
+  padding: 15px 10px;
+  background-color: #ddd;
+}
 </style>
