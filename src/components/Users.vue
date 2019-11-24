@@ -22,6 +22,7 @@
       :data="userList"
       stripe
       style="width: 100%">
+      <el-table-column type="index" :index="tabIndex"></el-table-column>
       <el-table-column
         prop="username"
         label="姓名"
@@ -189,6 +190,10 @@ export default {
     this.getUserList()
   },
   methods: {
+    // 表格的索引
+    tabIndex (index) {
+      return (this.pagenum - 1) * this.pagesize + index + 1
+    },
     // 获取用户列表数据
     async getUserList () {
       const { meta, data } = await this.$axios.get('users', {
