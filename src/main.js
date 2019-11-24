@@ -6,6 +6,7 @@ import router from './router'
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
+import moment from 'moment'
 
 // axiso 的全局配置
 axios.defaults.baseURL = 'http://localhost:8888/api/private/v1/'
@@ -35,6 +36,11 @@ Vue.use(elementUI)
 
 // 清除vue 的无用console提示
 Vue.config.productionTip = false
+
+// 全局时间过滤器
+Vue.filter('format', function (val) {
+  return moment(val * 1000).format('YYYY-MM-DD HH:mm:ss')
+})
 
 new Vue({
   router,

@@ -6,6 +6,8 @@ import Login from '../views/Login.vue'
 import Rights from '../components/Rights.vue'
 import Users from '../components/Users.vue'
 import Roles from '../components/Roles.vue'
+import Goods from '../components/Goods.vue'
+import GoodsAdd from '../components/GoodsAdd.vue'
 
 Vue.use(VueRouter)
 
@@ -25,7 +27,9 @@ const routes = [
     children: [
       { path: 'users', component: Users },
       { path: 'roles', component: Roles },
-      { path: 'rights', component: Rights }
+      { path: 'rights', component: Rights },
+      { path: 'goods', component: Goods },
+      { path: 'goods-add', component: GoodsAdd }
     ]
   }
 ]

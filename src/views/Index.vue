@@ -76,7 +76,7 @@ export default {
   // 提供一个 计算属性, 动态给 默认高亮
     defaultActive () {
       // console.log(this.$route)
-      return this.$route.path
+      return this.$route.path.split('-')[0]
     }
   }
 }
