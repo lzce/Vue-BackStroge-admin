@@ -8,7 +8,7 @@ import 'quill/dist/quill.bubble.css'
 
 // import element-ui
 import elementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import moment from 'moment'
 

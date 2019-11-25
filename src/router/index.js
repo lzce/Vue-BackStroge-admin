@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Index from '../views/Index.vue'
-import Login from '../views/Login.vue'
+// 配置异步组件
+const Index = () => import(/* webpackChunkNameL 'index' */'../views/Index.vue')
+const Login = () => import(/* webpackChunkNameL 'index' */'../views/Login.vue')
 
-import Rights from '../components/Rights.vue'
-import Users from '../components/Users.vue'
-import Roles from '../components/Roles.vue'
-import Goods from '../components/Goods.vue'
-import GoodsAdd from '../components/GoodsAdd.vue'
-import Categories from '../components/Categories.vue'
+const Rights = () => import(/* webpackChunkNameL 'role' */'../components/Rights.vue')
+const Users = () => import(/* webpackChunkNameL 'user' */'../components/Users.vue')
+const Roles = () => import(/* webpackChunkNameL 'role' */'../components/Roles.vue')
+const Goods = () => import(/* webpackChunkNameL 'goods' */'../components/Goods.vue')
+const GoodsAdd = () => import(/* webpackChunkNameL 'goods' */'../components/GoodsAdd.vue')
+const Categories = () => import(/* webpackChunkNameL 'goods' */'../components/Categories.vue')
 
 Vue.use(VueRouter)
 
