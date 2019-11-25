@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 配置异步组件
-const Index = () => import(/* webpackChunkNameL 'index' */'../views/Index.vue')
-const Login = () => import(/* webpackChunkNameL 'index' */'../views/Login.vue')
+const Index = () => import(/* webpackChunkName: 'index' */'../views/Index.vue')
+const Login = () => import(/* webpackChunkName: 'index' */'../views/Login.vue')
 
-const Rights = () => import(/* webpackChunkNameL 'role' */'../components/Rights.vue')
-const Users = () => import(/* webpackChunkNameL 'user' */'../components/Users.vue')
-const Roles = () => import(/* webpackChunkNameL 'role' */'../components/Roles.vue')
-const Goods = () => import(/* webpackChunkNameL 'goods' */'../components/Goods.vue')
-const GoodsAdd = () => import(/* webpackChunkNameL 'goods' */'../components/GoodsAdd.vue')
-const Categories = () => import(/* webpackChunkNameL 'goods' */'../components/Categories.vue')
+const Rights = () => import(/* webpackChunkName: 'role' */'../components/Rights.vue')
+const Users = () => import(/* webpackChunkName: 'user' */'../components/Users.vue')
+const Roles = () => import(/* webpackChunkName: 'role' */'../components/Roles.vue')
+const Goods = () => import(/* webpackChunkName: 'goods' */'../components/Goods.vue')
+const GoodsAdd = () => import(/* webpackChunkName: 'goods' */'../components/GoodsAdd.vue')
+const Categories = () => import(/* webpackChunkName: 'goods' */'../components/Categories.vue')
 
 Vue.use(VueRouter)
 
