@@ -46,6 +46,7 @@
           :headers="headers"
           :on-success="uploadSuccess"
           :on-preview="handlePictureCardPreview"
+          :on-remove="handleRemove"
           >
           <i class="el-icon-plus"></i>
         </el-upload>
@@ -59,6 +60,7 @@
         <quill-editor
           v-model="addForm.goods_introduce">
         </quill-editor>
+        <el-button type="success" class="addSure" @click="add">添加</el-button>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -125,12 +127,30 @@ export default {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
     },
+    //  删除图片处理函数
+    handleRemove (file) {
+      const path = file.response.data.tmp_path
+      this.addForm.pics = this.addForm.pics.filter(item => item.pic !== path)
+    },
     // 图片上传成功的回调, 把图片地址存数组中
     uploadSuccess (file) {
       // console.log(file)
       this.addForm.pics.push(
         { pic: file.data.tmp_path }
       )
+    },
+    // 添加
+    async add () {
+      const { meta } = await this.$axios.post('goods', {
+        ...this.addForm,
+        goods_cat: this.addForm.goods_cat.join(',')
+      })
+      if (meta.status === 201) {
+        this.$message.success('小可爱, 添加成功啦🎉')
+        this.$router.push('/index/goods')
+      } else {
+        this.$message.error(meta.msg)
+      }
     }
   }
 }
@@ -139,5 +159,18 @@ export default {
 <style lang="less" scoped>
 .el-form-1 {
   width: 60%;
+}
+.quill-editor {
+  background-color: #fff;
+  /deep/ .ql-editor {
+    min-height: 300px
+  }
+}
+.addSure {
+  margin-top: 20px;
+  margin-left: 50%;
+  width: 200px;
+  transform: translateX(-50%);
+  font-weight: 700;
 }
 </style>
